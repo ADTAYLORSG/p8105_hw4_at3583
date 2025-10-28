@@ -2,6 +2,7 @@
 name: "Alexandria D. Taylor," 
 date: "`r format(Sys.Date())`"
 output_dir: "docs"
+output_file: "index.html"
 navbar:
   title: "AT Portfolio"
   left:
