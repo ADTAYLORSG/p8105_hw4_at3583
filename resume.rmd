@@ -1,0 +1,32 @@
+---
+title: "Resume"
+output: 
+  html_document:
+    theme: flatly
+    highlight: textmate
+output_file: "resume.html"
+---
+
+# Alexandria D. Taylor
+*Columbia University, Mailman School of Public Health*
+Email: at3583@columbia.edu
+Github: [ADTAYLORSG](https://github.com/ADTAYLORSG)
+LinkedIn: [linkedin.com/in/atprecisionmedicine](https://linkedin.com/in/atprecisionmedicine)
+
+## Education
+- **M.S. Biostatistics**, Columbia University , expected 2026
+- ** B.S. Biochemistry**, Univerisity of California - Santa Barbara
+
+## Research Expereience
+- **Lab Manager / Coordinator**, Dept. of Precision Medicine & Genetics, Columbia University
+  - Implemented $13K Biobanking pipeline 
+  - Managed U937 cell lines and optimized FCRL3/FCAR ELISA assays
+
+## Technical Skills
+- R (tidyverse, ggplot2, Bioconductor packages)
+- Git/GitHub for reproducibile projects 
+- Laboratory assay design & data management
+
+## Professional Interests 
+Statistical genetics | Biomedical data integration | Reproducible research
+

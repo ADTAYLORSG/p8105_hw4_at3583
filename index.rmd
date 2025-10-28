@@ -1,0 +1,15 @@
+---
+title: "Welcome"
+output: 
+  html_document:
+    theme: flatly
+    highlight: textmate
+---
+# Welcome
+
+Hello, I'm **Alexandria D. Taylor**, 
+M.S. Biostatistics student at Columbia University. 
+
+This site showcases my coursework, research experience, and interactive visualizations created in **R**.
+
+Use the navigation bar to explore my portfolio and get to know a little about me. 

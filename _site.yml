@@ -2,6 +2,7 @@
 name: "p8105_hw4_at3583"
 output_dir: "docs"
 
+
 navbar:
   title: "Alexandria D. Taylor" 
   left:
