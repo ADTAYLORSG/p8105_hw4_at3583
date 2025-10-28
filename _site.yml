@@ -1,9 +1,9 @@
 ---
-name: "Alexandria D. Taylor," 
-date: "`r format(Sys.Date())`"
+name: "p8105_hw4_at3583"
 output_dir: "docs"
+
 navbar:
-  title: "AT Portfolio"
+  title: "Alexandria D. Taylor" 
   left:
     - text: "Home"
       href: index.html
@@ -22,14 +22,3 @@ output:
   html_document:
     theme: flatly
     highlight: textmate
----
-
-
-Welcome to the Portfolio site of Alexandria Taylor. 
-```{r setup, include=FALSE}
-# run install.packages() 
-knitr::opts_chunk$set(
-echo = TRUE,
-message = FALSE,
-warning = FALSE
-)
