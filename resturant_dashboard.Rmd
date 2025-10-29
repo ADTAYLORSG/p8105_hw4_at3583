@@ -1,0 +1,32 @@
+---
+title: "NYC Resturant Inspection Dashboard"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: rows
+    vertical_layout: fill
+    theme: flatly
+---
+
+```{r, include=FALSE, echo = TRUE, message = FALSE, warning = FALSE}
+
+# Load Libraries
+library(p8105.datasets)
+library(tidyverse)
+library(plotly)
+library(lubridate)
+library(janitor)
+library(flexdashboard)
+
+# Load and clean dataset
+nyc_resturants <- rest_inspec |>
+  clean_names() |>
+  mutate(
+    inspection_date = mdy(inspection_date),
+    grade = factor(grade, levels = c("A", "B", "C", "P", "Z", "Not Yet Graded"))
+  )
+
+# View Dataset
+head(rest_inspec)
+colnames(rest_inspec)
+
+```
