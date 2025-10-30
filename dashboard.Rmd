@@ -5,9 +5,10 @@ output:
     orientation: rows
     theme: cerulean
 output_file: dashboard.html
+runtime: shiny
 ---
 
-```{r, include=FALSE}
+```{r setup, include=FALSE}
 library(p8105.datasets)
 library(tidyverse)
 library(plotly)
@@ -62,7 +63,6 @@ plot_ly(
 ```
 
 ## Violations by Borough (with filter)
-
 ```{r}
 ## plot violations by borough
 nyc_rest |>
@@ -76,8 +76,8 @@ nyc_rest |>
     fill = "Grade"
   ) +
   theme_minimal()
-
 ```
+
 
 ## Score Distribution by Grade
 ```{r}
