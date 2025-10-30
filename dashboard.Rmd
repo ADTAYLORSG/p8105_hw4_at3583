@@ -27,8 +27,8 @@ nyc_rest <- rest_inspec |>
   )
 ```
 
-## Top NYC Cuisines & Violation by Borough
-```{r, include=FALSE}
+## Top NYC Cuisines
+```{r}
 #Plot Top Cuisines NYC
 top_cuisines <- nyc_rest |>
   count(cuisine_description, sort = TRUE) |>
@@ -38,13 +38,13 @@ top_cuisines <- nyc_rest |>
     cuisine_description = forcats::fct_reorder(cuisine_description, n)
   )
 
-tpc <- plot_ly(
+plot_ly(
   top_cuisines,
   y = ~cuisine_description,
   x = ~n,
   type = "bar",
   orientation = "h",
-  marker = list(color = "forestgreen")
+  marker = list(color = "teal")
 ) |>
   layout(
     title = "Top 10 Cuisines in NYC",
@@ -52,10 +52,11 @@ tpc <- plot_ly(
     yaxis = list(title = "", automargin = TRUE)
   ) 
 ```
+
 ## Violations by Borough
-```{r, include=FALSE}
+```{r}
 ## Plot violations by borough
-boro <- nyc_rest |>
+nyc_rest |>
   filter(!is.na(score)) |>
   ggplot(aes(x = boro, y = score, fill = grade)) +
   geom_boxplot() +
@@ -67,31 +68,29 @@ boro <- nyc_rest |>
   ) +
   theme_minimal()
 ```
-## Top NYC Cuisines & Violations by Borough
-Row
--------------------------------------
-## Top 10 Cuisines in NYC
-```{r, echo=FALSE}
-tpc
-```
 
-```{r, echo=FALSE}
-boro
-```
-
-```{r, include=FALSE}
-#Plot Cuisine score by grade
-grade_plot <- nyc_rest |>
-  filter(!is.na(score), grade %in% c("A", "B", "C")) |>
-  plot_ly(x = ~grade, y = ~score, type = "box") |>
+```{r}
+# Score over time by grade
+nyc_rest |>
+  filter(!is.na(score)) |>
+  sample_frac(0.05) |>  
+  plot_ly(
+    x = ~inspection_date,
+    y = ~score,
+    color = ~grade,
+    type = "scatter",
+    mode = "markers"
+  ) |>
   layout(
-    title = "Inspection Score Distribution by Grade",
-    yaxis = list(title = "Inspection Score"),
-    xaxis = list(title = "Grade")
+    title = "Inspection Scores Over Time",
+    xaxis = list(title = "Date"),
+    yaxis = list(title = "Inspection Score (lower = better)")
   )
 ```
 
-```{r, echo=FALSE}
-grade_plot
-```
+
+
+
+
+
 
