@@ -3,8 +3,7 @@ title: "NYC Resturant Inspection Dashboard"
 output: 
   flexdashboard::flex_dashboard:
     orientation: rows
-    theme: cosmo
-runtime: shiny
+    theme: cerulean
 ---
 
 ```{r, include=FALSE}
