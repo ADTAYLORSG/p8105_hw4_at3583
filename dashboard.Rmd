@@ -5,11 +5,10 @@ output:
   flexdashboard::flex_dashboard:
     orientation: rows
     theme: cerulean
-runtime: shiny
+    runtime: shiny
 ---
 
 ```{r, include=FALSE}
-
 # Load Libraries
 library(p8105.datasets)
 library(tidyverse)
