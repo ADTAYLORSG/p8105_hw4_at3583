@@ -68,7 +68,7 @@ nyc_rest |>
   ) +
   theme_minimal()
 ```
-# Score over time by grade
+
 ```{r}
 # Plot Score over time by grade
 nyc_rest |>
