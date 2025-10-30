@@ -5,7 +5,6 @@ output:
     theme: flatly
     highlight: textmate
 ---
-# Welcome
 
 Hello, I'm **Alexandria D. Taylor**, 
 M.S. Biostatistics student at Columbia University. 
