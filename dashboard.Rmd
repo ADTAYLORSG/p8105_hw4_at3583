@@ -68,9 +68,9 @@ nyc_rest |>
   ) +
   theme_minimal()
 ```
-
-```{r}
 # Score over time by grade
+```{r}
+# Plot Score over time by grade
 nyc_rest |>
   filter(!is.na(score)) |>
   sample_frac(0.05) |>  
