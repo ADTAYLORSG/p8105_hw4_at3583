@@ -4,6 +4,7 @@ output:
   flexdashboard::flex_dashboard:
     orientation: rows
     theme: cerulean
+runtime: shiny
 ---
 
 ```{r setup, include=FALSE}
@@ -23,19 +24,10 @@ nyc_rest <- rest_inspec |>
     year = year(inspection_date),
     grade = factor(grade, levels = c("A", "B", "C", "P", "Z", "Not Yet Graded"))
   )
-
-# View Dataset
-head(rest_inspec$inspection_date)
-colnames(rest_inspec)
 ```
 
-## Most Common Cuisines
+## Top Cuisines
 ```{r}
-library(plotly)
-library(forcats)
-library(stringr)
-
-# Compute top cuisines with wrapped labels
 top_cuisines <- nyc_rest |>
   count(cuisine_description, sort = TRUE) |>
   slice_head(n = 10) |>
@@ -44,7 +36,6 @@ top_cuisines <- nyc_rest |>
     cuisine_description = forcats::fct_reorder(cuisine_description, n)
   )
 
-# Plot top cuisines
 plot_ly(
   top_cuisines,
   y = ~cuisine_description,
@@ -54,7 +45,6 @@ plot_ly(
   marker = list(color = "forestgreen")
 ) |>
   layout(
-    title = "Top 10 Most Common Cuisines in NYC",
     xaxis = list(title = "Number of Inspections"),
     yaxis = list(title = "", automargin = TRUE)
   )
@@ -62,13 +52,11 @@ plot_ly(
 
 ## Violations by Borough (with filter)
 ```{r}
-## plot violations by borough
 nyc_rest |>
   filter(!is.na(score)) |>
   ggplot(aes(x = boro, y = score, fill = grade)) +
   geom_boxplot() +
   labs(
-    title = "Inspection Score Distribution by Borough",
     x = "Borough",
     y = "Inspection Score (lower = better)",
     fill = "Grade"
