@@ -31,7 +31,7 @@ top_cuisines <- nyc_rest |>
   count(cuisine_description, sort = TRUE) |>
   slice_head(n = 10) |>
   mutate(
-    cuisine_description = str_wrap(cuisine_description, width = 15),
+    cuisine_description = str_wrap(cuisine_description, width = 35),
     cuisine_description = forcats::fct_reorder(cuisine_description, n)
   )
 
