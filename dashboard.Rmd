@@ -1,9 +1,11 @@
 ---
-title: "NYC Resturant Inspection Dashboard"
-output: 
+---
+title: "NYC Restaurant Inspection Dashboard"
+output:
   flexdashboard::flex_dashboard:
     orientation: rows
     theme: cerulean
+runtime: shiny
 ---
 
 ```{r, include=FALSE}
@@ -15,6 +17,8 @@ library(plotly)
 library(lubridate)
 library(janitor)
 library(flexdashboard)
+library(forcats)
+library(stringr)
 
 # Load and clean dataset
 nyc_rest <- rest_inspec |>
