@@ -26,6 +26,7 @@ nyc_rest <- rest_inspec |>
     grade = factor(grade, levels = c("A", "B", "C", "P", "Z", "Not Yet Graded"))
   )
 ```
+
 ## Top NYC Cuisines & Violation by Borough
 ```{r, include=FALSE}
 #Plot Top Cuisines NYC
@@ -66,7 +67,10 @@ boro <- nyc_rest |>
   ) +
   theme_minimal()
 ```
-
+## Top NYC Cuisines & Violations by Borough
+Row
+-------------------------------------
+## Top 10 Cuisines in NYC
 ```{r, echo=FALSE}
 tpc
 ```

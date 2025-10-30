@@ -15,7 +15,7 @@ navbar:
   right:
     - icon: fab fa-github
       href: https://github.com/ADTAYLORSG
-    - icon: fas fa-envelop
+    - icon: fas fa-envelope
       href: mailto:at3583@cumc.columbia.edu
     - icon: fab fa-linkedin
       href: https://linkedin.com/in/atprecisionmedicine

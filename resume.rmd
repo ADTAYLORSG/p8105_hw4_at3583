@@ -15,9 +15,9 @@ LinkedIn: [linkedin.com/in/atprecisionmedicine](https://linkedin.com/in/atprecis
 
 ## Education
 - **M.S. Biostatistics**, Columbia University , expected 2026
-- **B.S. Biochemistry**, Univerisity of California - Santa Barbara
+- **B.S. Biochemistry**, University of California - Santa Barbara
 
-## Research Expereience
+## Research Experience
 - **Lab Manager / Coordinator**, Dept. of Precision Medicine & Genetics, Columbia University
   - Implemented $13K Biobanking pipeline 
   - Managed U937 cell lines and optimized FCRL3/FCAR ELISA assays
