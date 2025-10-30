@@ -19,10 +19,6 @@ navbar:
       href: mailto:at3583@cumc.columbia.edu
     - icon: fab fa-linkedin
       href: https://linkedin.com/in/atprecisionmedicine
-output:
-  html_document:
-    theme: flatly
-    highlight: textmate
     
 exclude:
   - dashboard.Rmd
