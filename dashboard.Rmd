@@ -4,8 +4,6 @@ output:
   flexdashboard::flex_dashboard:
     orientation: rows
     theme: cerulean
-output_file: dashboard.html
-runtime: shiny
 ---
 
 ```{r setup, include=FALSE}
@@ -31,7 +29,7 @@ head(rest_inspec$inspection_date)
 colnames(rest_inspec)
 ```
 
-## Most Common Cuisines 
+## Most Common Cuisines
 ```{r}
 library(plotly)
 library(forcats)
