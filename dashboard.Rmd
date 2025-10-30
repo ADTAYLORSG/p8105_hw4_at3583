@@ -1,5 +1,4 @@
 ---
----
 title: "NYC Restaurant Inspection Dashboard"
 output:
   flexdashboard::flex_dashboard:
@@ -9,7 +8,6 @@ output:
 ---
 
 ```{r, include=FALSE}
-# Load Libraries
 library(p8105.datasets)
 library(tidyverse)
 library(plotly)
@@ -19,11 +17,10 @@ library(flexdashboard)
 library(forcats)
 library(stringr)
 
-# Load and clean dataset
 nyc_rest <- rest_inspec |>
   clean_names() |>
   mutate(
-    inspection_date = lubridate::ymd(inspection_date),
+    inspection_date = ymd(inspection_date),
     year = year(inspection_date),
     grade = factor(grade, levels = c("A", "B", "C", "P", "Z", "Not Yet Graded"))
   )
