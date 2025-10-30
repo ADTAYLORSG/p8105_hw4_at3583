@@ -7,6 +7,7 @@ output:
 ---
 
 ```{r setup, include=FALSE}
+#Load Libraries
 library(p8105.datasets)
 library(tidyverse)
 library(plotly)
@@ -16,6 +17,7 @@ library(flexdashboard)
 library(forcats)
 library(stringr)
 
+#Load and clean dataset
 nyc_rest <- rest_inspec |>
   clean_names() |>
   mutate(
@@ -24,9 +26,9 @@ nyc_rest <- rest_inspec |>
     grade = factor(grade, levels = c("A", "B", "C", "P", "Z", "Not Yet Graded"))
   )
 ```
-
-### Top Cuisines
+## Top NYC Cuisines & Violation by Borough
 ```{r, include=FALSE}
+#Plot Top Cuisines NYC
 top_cuisines <- nyc_rest |>
   count(cuisine_description, sort = TRUE) |>
   slice_head(n = 10) |>
@@ -44,18 +46,14 @@ tpc <- plot_ly(
   marker = list(color = "forestgreen")
 ) |>
   layout(
+    title = "Top 10 Cuisines in NYC",
     xaxis = list(title = "Number of Inspections"),
     yaxis = list(title = "", automargin = TRUE)
-  )
+  ) 
 ```
-
-```{r, echo=FALSE}
-tpc
-```
-
-### Violations by Borough (with filter)
+## Violations by Borough
 ```{r, include=FALSE}
-## plot violations by borough
+## Plot violations by borough
 boro <- nyc_rest |>
   filter(!is.na(score)) |>
   ggplot(aes(x = boro, y = score, fill = grade)) +
@@ -70,14 +68,23 @@ boro <- nyc_rest |>
 ```
 
 ```{r, echo=FALSE}
+tpc
+```
+
+```{r, echo=FALSE}
 boro
 ```
-### Score Distribution by Grade
+
 ```{r, include=FALSE}
+#Plot Cuisine score by grade
 grade_plot <- nyc_rest |>
   filter(!is.na(score), grade %in% c("A", "B", "C")) |>
   plot_ly(x = ~grade, y = ~score, type = "box") |>
-  layout(yaxis = list(title = "Inspection Score"))
+  layout(
+    title = "Inspection Score Distribution by Grade",
+    yaxis = list(title = "Inspection Score"),
+    xaxis = list(title = "Grade")
+  )
 ```
 
 ```{r, echo=FALSE}
