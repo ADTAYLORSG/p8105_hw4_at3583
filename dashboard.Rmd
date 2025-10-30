@@ -4,7 +4,6 @@ output:
   flexdashboard::flex_dashboard:
     orientation: rows
     theme: cerulean
-runtime: shiny
 ---
 
 ```{r setup, include=FALSE}
@@ -26,8 +25,8 @@ nyc_rest <- rest_inspec |>
   )
 ```
 
-## Top Cuisines
-```{r}
+### Top Cuisines
+```{r, include=FALSE}
 top_cuisines <- nyc_rest |>
   count(cuisine_description, sort = TRUE) |>
   slice_head(n = 10) |>
@@ -36,7 +35,7 @@ top_cuisines <- nyc_rest |>
     cuisine_description = forcats::fct_reorder(cuisine_description, n)
   )
 
-plot_ly(
+tpc <- plot_ly(
   top_cuisines,
   y = ~cuisine_description,
   x = ~n,
@@ -50,13 +49,19 @@ plot_ly(
   )
 ```
 
-## Violations by Borough (with filter)
-```{r}
-nyc_rest |>
+```{r, echo=FALSE}
+tpc
+```
+
+### Violations by Borough (with filter)
+```{r, include=FALSE}
+## plot violations by borough
+boro <- nyc_rest |>
   filter(!is.na(score)) |>
   ggplot(aes(x = boro, y = score, fill = grade)) +
   geom_boxplot() +
   labs(
+    title = "Inspection Score Distribution by Borough",
     x = "Borough",
     y = "Inspection Score (lower = better)",
     fill = "Grade"
@@ -64,14 +69,18 @@ nyc_rest |>
   theme_minimal()
 ```
 
-
-## Score Distribution by Grade
-```{r}
-nyc_rest |>
+```{r, echo=FALSE}
+boro
+```
+### Score Distribution by Grade
+```{r, include=FALSE}
+grade_plot <- nyc_rest |>
   filter(!is.na(score), grade %in% c("A", "B", "C")) |>
   plot_ly(x = ~grade, y = ~score, type = "box") |>
   layout(yaxis = list(title = "Inspection Score"))
 ```
 
-
+```{r, echo=FALSE}
+grade_plot
+```
 
