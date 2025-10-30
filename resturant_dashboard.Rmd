@@ -3,11 +3,11 @@ title: "NYC Resturant Inspection Dashboard"
 output: 
   flexdashboard::flex_dashboard:
     orientation: rows
-    vertical_layout: fill
-    theme: flatly
+    theme: cosmo
+runtime: shiny
 ---
 
-```{r, include=FALSE, echo = TRUE, message = FALSE, warning = FALSE}
+```{r, include=FALSE}
 
 # Load Libraries
 library(p8105.datasets)
@@ -18,15 +18,75 @@ library(janitor)
 library(flexdashboard)
 
 # Load and clean dataset
-nyc_resturants <- rest_inspec |>
+nyc_rest <- rest_inspec |>
   clean_names() |>
   mutate(
-    inspection_date = mdy(inspection_date),
+    inspection_date = lubridate::ymd(inspection_date),
+    year = year(inspection_date),
     grade = factor(grade, levels = c("A", "B", "C", "P", "Z", "Not Yet Graded"))
   )
 
 # View Dataset
-head(rest_inspec)
+head(rest_inspec$inspection_date)
 colnames(rest_inspec)
+```
+
+## Most Common Cuisines 
+```{r}
+library(plotly)
+library(forcats)
+library(stringr)
+
+# Compute top cuisines with wrapped labels
+top_cuisines <- nyc_rest |>
+  count(cuisine_description, sort = TRUE) |>
+  slice_head(n = 10) |>
+  mutate(
+    cuisine_description = str_wrap(cuisine_description, width = 15),
+    cuisine_description = forcats::fct_reorder(cuisine_description, n)
+  )
+
+# Plot top cuisines
+plot_ly(
+  top_cuisines,
+  y = ~cuisine_description,
+  x = ~n,
+  type = "bar",
+  orientation = "h",
+  marker = list(color = "forestgreen")
+) |>
+  layout(
+    title = "Top 10 Most Common Cuisines in NYC",
+    xaxis = list(title = "Number of Inspections"),
+    yaxis = list(title = "", automargin = TRUE)
+  )
+```
+
+## Violations by Borough (with filter)
+
+```{r}
+## plot violations by borough
+nyc_rest |>
+  filter(!is.na(score)) |>
+  ggplot(aes(x = boro, y = score, fill = grade)) +
+  geom_boxplot() +
+  labs(
+    title = "Inspection Score Distribution by Borough",
+    x = "Borough",
+    y = "Inspection Score (lower = better)",
+    fill = "Grade"
+  ) +
+  theme_minimal()
 
 ```
+
+## Score Distribution by Grade
+```{r}
+nyc_rest |>
+  filter(!is.na(score), grade %in% c("A", "B", "C")) |>
+  plot_ly(x = ~grade, y = ~score, type = "box") |>
+  layout(yaxis = list(title = "Inspection Score"))
+```
+
+
+

@@ -11,7 +11,7 @@ navbar:
     - text: "Resume"
       href: resume.html
     - text: "Dashboard"
-      href: dashboard.html
+      href: resturant_dashboard.html
   right:
     - icon: fab fa-github
       href: https://github.com/ADTAYLORSG
