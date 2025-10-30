@@ -23,3 +23,8 @@ output:
   html_document:
     theme: flatly
     highlight: textmate
+    
+exclude:
+  - dashboard.Rmd
+  - dashboard.rmd
+  - resturant_dashboard.Rmd
